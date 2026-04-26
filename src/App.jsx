@@ -74,25 +74,30 @@ function App() {
         <text x={margin.left} y={72} fontSize={14} fill="#222">
           Number of laboratory-acquired infections, 1970-2021
         </text>
-        <text x={margin.left} y={height - 50} fontSize={11} fill="#666">
-          Sources: Laboratory-Acquired Infection Database; American Biological
-          Safety Association
-        </text>
-        <a
-          href="https://www.economist.com/graphic-detail/2021/08/24/infections-caught-in-laboratories-are-surprisingly-common"
-          target="_blank"
-          rel="noopener noreferrer"
+        <foreignObject
+          x={margin.left}
+          y={height - 70}
+          width={Math.max(width - margin.left - margin.right, 0)}
+          height={60}
         >
-          <text
-            x={margin.left}
-            y={height - 32}
-            fontSize={11}
-            fill="#666"
-            style={{ cursor: "pointer", textDecoration: "underline" }}
+          <div
+            xmlns="http://www.w3.org/1999/xhtml"
+            style={{ fontSize: 11, color: "#666", lineHeight: 1.3 }}
           >
-            The Economist
-          </text>
-        </a>
+            Sources: Laboratory-Acquired Infection Database; American
+            Biological Safety Association
+            <div style={{ marginTop: 4 }}>
+              <a
+                href="https://www.economist.com/graphic-detail/2021/08/24/infections-caught-in-laboratories-are-surprisingly-common"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#666" }}
+              >
+                The Economist
+              </a>
+            </div>
+          </div>
+        </foreignObject>
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <line
             x1={0}
