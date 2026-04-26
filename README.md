@@ -1,16 +1,21 @@
-# React + Vite
+# Economist Bar Chart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A horizontal bar chart recreating _The Economist_'s "Escape artists" piece on laboratory-acquired infections (1970–2021). Built with React, Vite, and D3.
 
-Currently, two official plugins are available:
+Built following Yan Holtz's [D3 Loves React](https://www.d3-loves-react.com/) course — module on **scales**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Concepts covered
 
-## React Compiler
+- `scaleLinear` — maps counts to bar pixel widths
+- `scaleBand` with `.bandwidth()` and `.padding()` — handles bar heights and y-positions
+- `xScale.ticks()` for hand-rolled axis labels and gridlines
+- Conditional label placement: inside the bar (white text) when it fits, outside (blue) when it doesn't, with a single cutoff between the two
+- SVG `feMorphology` filter for a glyph-shaped white halo behind outside labels
+- Responsive layout via `useRef` + `ResizeObserver`, keeping text size constant while bar widths flex
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Run locally
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
