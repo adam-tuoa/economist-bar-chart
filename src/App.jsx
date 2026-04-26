@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { scaleLinear, scaleBand } from "d3";
 import { data } from "./data";
 
-const height = 560;
+const height = 540;
 const margin = { top: 120, right: 20, bottom: 80, left: 20 };
 const innerHeight = height - margin.top - margin.bottom;
 
@@ -28,7 +28,7 @@ function App() {
   const yScale = scaleBand()
     .domain(sortedData.map((d) => d.name))
     .range([0, innerHeight])
-    .padding(0.2);
+    .padding(0.4);
 
   const ticks = xScale.ticks(width < 500 ? 6 : 11);
 
@@ -78,9 +78,21 @@ function App() {
           Sources: Laboratory-Acquired Infection Database; American Biological
           Safety Association
         </text>
-        <text x={margin.left} y={height - 32} fontSize={11} fill="#666">
-          The Economist
-        </text>
+        <a
+          href="https://www.economist.com/graphic-detail/2021/08/24/infections-caught-in-laboratories-are-surprisingly-common"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <text
+            x={margin.left}
+            y={height - 32}
+            fontSize={11}
+            fill="#666"
+            style={{ cursor: "pointer", textDecoration: "underline" }}
+          >
+            The Economist
+          </text>
+        </a>
         <g transform={`translate(${margin.left}, ${margin.top})`}>
           <line
             x1={0}
