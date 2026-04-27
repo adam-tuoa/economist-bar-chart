@@ -11,6 +11,7 @@ const innerHeight = height - margin.top - margin.bottom;
 const sortedData = [...data].sort((a, b) => b.count - a.count);
 
 function App() {
+  const isEmbedded = window.self !== window.top;
   const containerRef = useRef(null);
   const { width } = useDimensions(containerRef);
 
@@ -144,24 +145,26 @@ function App() {
           })}
         </g>
       </svg>
-      <Footer
-        attribution={{
-          text: "Yan Holtz's D3-loves-react course",
-          href: "http://d3-loves-react.com",
-        }}
-        links={[
-          {
-            href: "https://adam-tuoa.github.io/homepage/",
-            label: "Homepage",
-            icon: "home",
-          },
-          {
-            href: "https://github.com/adam-tuoa",
-            label: "GitHub",
-            icon: "github",
-          },
-        ]}
-      />
+      {!isEmbedded && (
+        <Footer
+          attribution={{
+            text: "Yan Holtz's D3-loves-react course",
+            href: "http://d3-loves-react.com",
+          }}
+          links={[
+            {
+              href: "https://adam-tuoa.github.io/homepage/",
+              label: "Homepage",
+              icon: "home",
+            },
+            {
+              href: "https://github.com/adam-tuoa",
+              label: "GitHub",
+              icon: "github",
+            },
+          ]}
+        />
+      )}
     </div>
   );
 }
