@@ -1,25 +1,18 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { scaleLinear, scaleBand } from "d3";
 import { data } from "./data";
+import { useDimensions } from "./hooks/useDimensions";
+import Footer from "./components/Footer";
 
 const height = 540;
-const margin = { top: 120, right: 20, bottom: 80, left: 20 };
+const margin = { top: 120, right: 50, bottom: 80, left: 20 };
 const innerHeight = height - margin.top - margin.bottom;
 
 const sortedData = [...data].sort((a, b) => b.count - a.count);
 
 function App() {
   const containerRef = useRef(null);
-  const [width, setWidth] = useState(760);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const observer = new ResizeObserver(([entry]) => {
-      setWidth(entry.contentRect.width);
-    });
-    observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const { width } = useDimensions(containerRef);
 
   const innerWidth = width - margin.left - margin.right;
 
@@ -37,7 +30,16 @@ function App() {
   );
 
   return (
-    <div ref={containerRef} style={{ padding: "16px", maxWidth: "600px" }}>
+    <div
+      ref={containerRef}
+      style={{
+        padding: "16px",
+        maxWidth: "600px",
+        background: "white",
+        color: "#222",
+        colorScheme: "light",
+      }}
+    >
       <svg
         width={width}
         height={height}
@@ -84,8 +86,8 @@ function App() {
             xmlns="http://www.w3.org/1999/xhtml"
             style={{ fontSize: 11, color: "#666", lineHeight: 1.3 }}
           >
-            Sources: Laboratory-Acquired Infection Database; American
-            Biological Safety Association
+            Sources: Laboratory-Acquired Infection Database; American Biological
+            Safety Association
             <div style={{ marginTop: 4 }}>
               <a
                 href="https://www.economist.com/graphic-detail/2021/08/24/infections-caught-in-laboratories-are-surprisingly-common"
@@ -142,6 +144,24 @@ function App() {
           })}
         </g>
       </svg>
+      <Footer
+        attribution={{
+          text: "Yan Holtz's D3-loves-react course",
+          href: "http://d3-loves-react.com",
+        }}
+        links={[
+          {
+            href: "https://adam-tuoa.github.io/homepage/",
+            label: "Homepage",
+            icon: "home",
+          },
+          {
+            href: "https://github.com/adam-tuoa",
+            label: "GitHub",
+            icon: "github",
+          },
+        ]}
+      />
     </div>
   );
 }
