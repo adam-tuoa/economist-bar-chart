@@ -11,7 +11,11 @@ const innerHeight = height - margin.top - margin.bottom;
 const sortedData = [...data].sort((a, b) => b.count - a.count);
 
 function App() {
-  const isEmbedded = window.self !== window.top;
+  const isEmbedded =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("embed") === "1";
+
+  if (isEmbedded) return null;
   const containerRef = useRef(null);
   const { width } = useDimensions(containerRef);
 
@@ -145,26 +149,25 @@ function App() {
           })}
         </g>
       </svg>
-      {!isEmbedded && (
-        <Footer
-          attribution={{
-            text: "Yan Holtz's D3-loves-react course",
-            href: "http://d3-loves-react.com",
-          }}
-          links={[
-            {
-              href: "https://adam-tuoa.github.io/homepage/",
-              label: "Homepage",
-              icon: "home",
-            },
-            {
-              href: "https://github.com/adam-tuoa",
-              label: "GitHub",
-              icon: "github",
-            },
-          ]}
-        />
-      )}
+
+      <Footer
+        attribution={{
+          text: "Yan Holtz's D3-loves-react course",
+          href: "http://d3-loves-react.com",
+        }}
+        links={[
+          {
+            href: "https://adam-tuoa.github.io/homepage/",
+            label: "Homepage",
+            icon: "home",
+          },
+          {
+            href: "https://github.com/adam-tuoa",
+            label: "GitHub",
+            icon: "github",
+          },
+        ]}
+      />
     </div>
   );
 }
