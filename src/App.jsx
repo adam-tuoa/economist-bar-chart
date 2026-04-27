@@ -11,11 +11,6 @@ const innerHeight = height - margin.top - margin.bottom;
 const sortedData = [...data].sort((a, b) => b.count - a.count);
 
 function App() {
-  const isEmbedded =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("embed") === "1";
-
-  if (isEmbedded) return null;
   const containerRef = useRef(null);
   const { width } = useDimensions(containerRef);
 
