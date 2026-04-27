@@ -26,7 +26,7 @@ function App() {
   const ticks = xScale.ticks(width < 500 ? 6 : 11);
 
   const firstOutsideIndex = sortedData.findIndex(
-    (d) => xScale(d.count) <= d.name.length * 7.5 + 16,
+    (d) => xScale(d.count) <= d.name.length * 6 + 16,
   );
 
   return (
