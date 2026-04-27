@@ -73,9 +73,19 @@ function App() {
         <text x={margin.left} y={48} fontSize={18} fontWeight={700}>
           Escape artists
         </text>
-        <text x={margin.left} y={72} fontSize={14} fill="#222">
-          Number of laboratory-acquired infections, 1970-2021
-        </text>
+        <foreignObject
+          x={margin.left}
+          y={56}
+          width={Math.max(width - margin.left - margin.right, 0)}
+          height={48}
+        >
+          <div
+            xmlns="http://www.w3.org/1999/xhtml"
+            style={{ fontSize: 14, color: "#222", lineHeight: 1.3 }}
+          >
+            Number of laboratory-acquired infections, 1970-2021
+          </div>
+        </foreignObject>
         <foreignObject
           x={margin.left}
           y={height - 70}
